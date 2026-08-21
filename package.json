@@ -1,0 +1,12 @@
+{
+  "name": "clue-collector",
+  "private": true,
+  "version": "0.2.0",
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  }
+}

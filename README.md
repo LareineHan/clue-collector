@@ -1,20 +1,17 @@
-# Clue Collector v0.1
-Local-first defensive phishing URL artifact collector.
+# Clue Collector v0.2
 
-Core rule: **common infrastructure is context, not a clue.** Mailgun/Mandrill/SendGrid/DocuSign/SharePoint/Google Drive/Safe Links usage alone is never promoted as sender linkage.
+Defensive phishing URL correlation tool.
 
-Current build:
-- multiple URLs
-- provider recognition
-- recursive percent decoding
-- embedded/downstream domain extraction
-- SharePoint tenant / OneDrive namespace extraction
-- Google Drive/Docs resource ID extraction
-- campaign/account/tenant-like named parameter candidates
-- recipient/token/timestamp noise suppression
-- browser-local history + repeated-artifact comparison
-- no external API
+Key fixes:
+- arbitrary pasted text is accepted, but only http/https URLs are parsed;
+- repeated clues are current-batch only and appear first;
+- saved history is opt-in and isolated on its own tab;
+- Clear history clears only saved history;
+- CNAME enrichment recognizes custom tracking domains for Mandrill, SendGrid, Mailgun, and some HubSpot hosts;
+- SharePoint tenant and OneDrive personal namespaces are extracted;
+- Google Drive/Docs resource IDs are resource pivots, never account IDs;
+- DocuSign shared server designations are suppressed; repeated opaque DocuSign values are campaign/resource clues only;
+- shared provider domains are never treated as sender linkage;
+- KQL pivot drafts are produced only from supported repeated clues.
 
-Important: repeated artifacts are correlation evidence, not proof of common ownership/operator. Opaque tokens are not labeled sender IDs without supported semantics.
-
-Open index.html directly or deploy as a static site.
+Push to a GitHub repo connected to Cloudflare Workers/Pages.
